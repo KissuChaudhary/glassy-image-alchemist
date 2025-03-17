@@ -16,7 +16,8 @@ import {
   History,
   PlusCircle,
   Loader2,
-  Undo2
+  Undo2,
+  AlertCircle
 } from "lucide-react";
 
 const ImageEditor: React.FC = () => {
@@ -93,6 +94,10 @@ const ImageEditor: React.FC = () => {
     }
     
     setIsLoading(true);
+    toast({
+      title: "Processing",
+      description: "Sending your image to Gemini AI for editing...",
+    });
     
     try {
       const result = await generateEditedImage(imageFile, prompt, apiKey);
@@ -108,12 +113,18 @@ const ImageEditor: React.FC = () => {
           title: "Image generated!",
           description: "Your edited image has been created successfully.",
         });
+      } else {
+        toast({
+          title: "Generation failed",
+          description: result.error || "Failed to generate image. Please try a different prompt.",
+          variant: "destructive"
+        });
       }
     } catch (error) {
       console.error("Error generating image:", error);
       toast({
         title: "Error",
-        description: "Failed to generate image. Please try again.",
+        description: "Failed to connect to Gemini API. Check your API key and try again.",
         variant: "destructive"
       });
     } finally {
@@ -216,8 +227,14 @@ const ImageEditor: React.FC = () => {
             
             {/* API key input */}
             <div className="space-y-2">
-              <label htmlFor="apiKey" className="text-sm font-medium text-muted-foreground">
+              <label htmlFor="apiKey" className="text-sm font-medium text-muted-foreground flex items-center">
                 Gemini API Key
+                <div className="ml-2 cursor-help group relative">
+                  <AlertCircle className="h-4 w-4 text-muted-foreground" />
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 p-2 bg-black/80 rounded-md text-xs opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                    You need a Gemini API key with access to the gemini-2.0-flash-exp-image-generation model. Get it from Google AI Studio.
+                  </div>
+                </div>
               </label>
               <Input
                 id="apiKey"
@@ -244,6 +261,9 @@ const ImageEditor: React.FC = () => {
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
               />
+              <p className="text-xs text-muted-foreground">
+                Be specific and descriptive. The model works best with clear instructions.
+              </p>
             </div>
             
             {/* Action buttons */}
@@ -258,7 +278,7 @@ const ImageEditor: React.FC = () => {
                 ) : (
                   <Sparkles className="h-4 w-4 mr-2" />
                 )}
-                <span>{isLoading ? "Generating..." : "Transform Image"}</span>
+                <span>{isLoading ? "Processing..." : "Transform Image"}</span>
               </Button>
               
               {outputImage && (
@@ -286,7 +306,14 @@ const ImageEditor: React.FC = () => {
           {/* Right column - Output image */}
           <div className="flex flex-col space-y-6">
             <div className="relative w-full h-64 rounded-xl glass-panel flex items-center justify-center overflow-hidden">
-              {outputImage ? (
+              {isLoading ? (
+                <div className="flex flex-col items-center justify-center">
+                  <Loader2 className="h-12 w-12 animate-spin text-primary mb-4" />
+                  <p className="text-sm text-center text-muted-foreground">
+                    AI is working on your image...
+                  </p>
+                </div>
+              ) : outputImage ? (
                 <img 
                   src={outputImage} 
                   alt="Generated" 

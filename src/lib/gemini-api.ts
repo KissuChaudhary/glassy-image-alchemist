@@ -1,5 +1,6 @@
 
 import { toast } from "@/components/ui/use-toast";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 interface GenerateImageResponse {
   success: boolean;
@@ -13,36 +14,70 @@ export async function generateEditedImage(
   apiKey: string
 ): Promise<GenerateImageResponse> {
   try {
-    // This is a simplified frontend representation of the API call
-    // In a real implementation, this would call a backend endpoint that handles the Gemini API
-    // with proper file handling and API key management
+    // Initialize the Google Generative AI client
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.0-flash-exp-image-generation",
+    });
+
+    // Convert File to base64 string
+    const base64Image = await fileToBase64(imageFile);
     
-    const formData = new FormData();
-    formData.append("image", imageFile);
-    formData.append("prompt", prompt);
-    formData.append("apiKey", apiKey);
+    // Configure the generation settings
+    const generationConfig = {
+      temperature: 1,
+      topP: 0.95,
+      topK: 40,
+      maxOutputTokens: 8192,
+    };
+
+    // Start a chat session with the provided image
+    const chatSession = model.startChat({
+      generationConfig,
+      history: []
+    });
+
+    console.log("Starting chat session with prompt:", prompt);
     
-    // Simulate API call - In production, this would be a real API endpoint
-    // that implements the Gemini API logic provided in the code sample
-    console.log("Generating image with prompt:", prompt);
-    console.log("Using image:", imageFile.name);
+    // Send the message with the image and prompt
+    const result = await chatSession.sendMessage([
+      {
+        inlineData: {
+          mimeType: imageFile.type,
+          data: base64Image.split(",")[1] // Remove the data:image/jpeg;base64, part
+        }
+      },
+      { text: prompt }
+    ]);
+
+    // Extract the response
+    const response = result.response;
     
-    // Simulate processing time
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // Check for inline data in the response
+    const parts = response.candidates?.[0]?.content?.parts || response.parts;
     
-    // In a real implementation, we would get the image URL from the API response
-    // For now, we'll create an object URL from the original file to simulate a response
-    const imageUrl = URL.createObjectURL(imageFile);
+    for (const part of parts) {
+      if (part.inlineData) {
+        // If there's inline data, it's an image
+        const responseImageBase64 = `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
+        return {
+          success: true,
+          imageUrl: responseImageBase64
+        };
+      }
+    }
     
+    // If we reach here, the model didn't return an image as expected
+    console.error("No image found in the model response");
     return {
-      success: true,
-      imageUrl
+      success: false,
+      error: "No image found in the model response"
     };
   } catch (error) {
     console.error("Error generating image:", error);
     toast({
       title: "Error",
-      description: "Failed to generate image. Please try again.",
+      description: error instanceof Error ? error.message : "Failed to generate image. Please try again.",
       variant: "destructive"
     });
     
@@ -51,4 +86,14 @@ export async function generateEditedImage(
       error: error instanceof Error ? error.message : "Unknown error"
     };
   }
+}
+
+// Helper function to convert File to base64
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = error => reject(error);
+  });
 }
