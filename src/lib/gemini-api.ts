@@ -50,25 +50,42 @@ export async function generateEditedImage(
       { text: prompt }
     ]);
 
-    // Extract the response
+    // Get the response from the model
     const response = result.response;
     
-    // Check for inline data in the response
-    const candidates = response.candidates?.[0]?.content?.parts || [];
-    
-    for (const part of candidates) {
-      if (part.inlineData) {
-        // If there's inline data, it's an image
-        const responseImageBase64 = `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
-        return {
-          success: true,
-          imageUrl: responseImageBase64
-        };
+    // Check if we have responseModalities with image
+    if (response.candidates && response.candidates.length > 0) {
+      const candidate = response.candidates[0];
+      if (candidate.content && candidate.content.parts) {
+        for (const part of candidate.content.parts) {
+          if (part.inlineData) {
+            // If there's inline data, it's an image
+            const responseImageBase64 = `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
+            return {
+              success: true,
+              imageUrl: responseImageBase64
+            };
+          }
+        }
       }
+    }
+    
+    // If we reach here, check if the response contains any base64 data (based on the screenshot)
+    // The screenshot shows that Google might directly return an object with base64 image data
+    const responseText = JSON.stringify(response);
+    const base64Match = responseText.match(/"data"\s*:\s*"([A-Za-z0-9+/=]+)"/);
+    
+    if (base64Match && base64Match[1]) {
+      // We found what appears to be base64 data
+      return {
+        success: true,
+        imageUrl: `data:image/jpeg;base64,${base64Match[1]}`
+      };
     }
     
     // If we reach here, the model didn't return an image as expected
     console.error("No image found in the model response");
+    console.error("Response structure:", JSON.stringify(response));
     return {
       success: false,
       error: "No image found in the model response"
