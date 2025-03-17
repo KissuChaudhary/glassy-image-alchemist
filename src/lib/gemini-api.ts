@@ -54,9 +54,9 @@ export async function generateEditedImage(
     const response = result.response;
     
     // Check for inline data in the response
-    const parts = response.candidates?.[0]?.content?.parts || response.parts;
+    const candidates = response.candidates?.[0]?.content?.parts || [];
     
-    for (const part of parts) {
+    for (const part of candidates) {
       if (part.inlineData) {
         // If there's inline data, it's an image
         const responseImageBase64 = `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
