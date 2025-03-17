@@ -39,14 +39,15 @@
 
 @layer base {
   * {
-    @apply border-border selection:bg-primary/20 selection:text-foreground;
+    @apply border-border selection:bg-purple-500/20 selection:text-foreground;
   }
   
   body {
     @apply bg-background text-foreground antialiased overflow-x-hidden;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
-    background-image: radial-gradient(circle at top right, rgba(79, 70, 229, 0.15) 0%, transparent 30%),
-                      radial-gradient(circle at bottom left, rgba(220, 38, 38, 0.1) 0%, transparent 30%);
+    background-image: 
+      radial-gradient(circle at top right, rgba(120, 80, 229, 0.15) 0%, transparent 30%),
+      radial-gradient(circle at bottom left, rgba(240, 80, 200, 0.1) 0%, transparent 30%);
     background-attachment: fixed;
   }
 
@@ -78,7 +79,7 @@
   }
   
   .neo-glow::after {
-    @apply content-[''] absolute inset-0 rounded-[inherit] bg-gradient-to-r from-primary/20 to-primary/10 opacity-0 blur-xl transition-all duration-500 -z-10;
+    @apply content-[''] absolute inset-0 rounded-[inherit] bg-gradient-to-r from-purple-500/20 to-pink-500/10 opacity-0 blur-xl transition-all duration-500 -z-10;
   }
   
   .neo-glow:hover::after {
@@ -94,10 +95,65 @@
   }
   
   .btn-gradient-border::before {
-    @apply content-[''] absolute inset-0 bg-gradient-to-r from-primary to-purple-500 -z-10;
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 -z-10;
   }
   
   .btn-gradient-border::after {
     @apply content-[''] absolute inset-[1px] rounded-[inherit] bg-background -z-10;
   }
+  
+  .animate-glow {
+    animation: glow 1.5s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 5px rgba(123, 97, 255, 0.2), 0 0 10px rgba(123, 97, 255, 0.2);
+    }
+    to {
+      box-shadow: 0 0 10px rgba(123, 97, 255, 0.4), 0 0 20px rgba(123, 97, 255, 0.4);
+    }
+  }
+}
+
+/* Animation keyframes and utilities */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-10px) rotate(1deg); 
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { 
+    opacity: 1; 
+  }
+  50% { 
+    opacity: 0.7; 
+  }
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animate-zoom-in {
+  animation: zoom-in 0.5s ease-out forwards;
 }

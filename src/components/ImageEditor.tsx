@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -149,20 +148,15 @@ const ImageEditor: React.FC = () => {
   
   return (
     <div className="w-full mx-auto">
-      <div className="glass-panel rounded-xl p-6 md:p-8 mb-8">
-        <h2 className="text-xl font-semibold flex items-center mb-6">
-          <Wand2 className="w-5 h-5 mr-2 text-primary" />
-          <span className="text-gradient">Image Transformation</span>
-        </h2>
-        
+      <div className="glass-panel rounded-xl backdrop-blur-lg bg-black/30 border border-white/10 shadow-[0_8px_32px_rgba(79,70,229,0.2)] p-6 md:p-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left column - Upload and controls */}
           <div className="flex flex-col space-y-6">
             {/* File upload area */}
             <div
               className={cn(
-                "relative w-full h-64 rounded-xl glass-input flex flex-col items-center justify-center cursor-pointer transition-all duration-300 overflow-hidden",
-                imagePreview ? "border-primary/30" : "border-dashed"
+                "relative w-full h-64 rounded-xl bg-gradient-to-br from-black/40 to-purple-900/20 backdrop-blur-md border border-white/10 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 overflow-hidden",
+                imagePreview ? "border-purple-500/40" : "border-dashed"
               )}
               onClick={() => fileInputRef.current?.click()}
               onDrop={handleDrop}
@@ -188,7 +182,7 @@ const ImageEditor: React.FC = () => {
                       <Button 
                         variant="secondary" 
                         size="sm" 
-                        className="glass-panel"
+                        className="bg-white/10 backdrop-blur-md border border-white/10"
                         onClick={(e) => {
                           e.stopPropagation();
                           fileInputRef.current?.click();
@@ -200,7 +194,7 @@ const ImageEditor: React.FC = () => {
                       <Button 
                         variant="destructive" 
                         size="sm" 
-                        className="glass-panel"
+                        className="bg-red-900/20 backdrop-blur-md border border-white/10"
                         onClick={(e) => {
                           e.stopPropagation();
                           clearImage();
@@ -214,11 +208,11 @@ const ImageEditor: React.FC = () => {
                 </>
               ) : (
                 <>
-                  <UploadCloud className="h-12 w-12 text-muted-foreground mb-2" />
-                  <p className="text-sm text-muted-foreground text-center">
+                  <UploadCloud className="h-12 w-12 text-purple-200/70 mb-2" />
+                  <p className="text-sm text-purple-100/80 text-center">
                     Drag & drop an image here, or click to select
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-xs text-purple-100/60 mt-1">
                     Supports JPG, PNG, WebP (Max 10MB)
                   </p>
                 </>
@@ -227,11 +221,11 @@ const ImageEditor: React.FC = () => {
             
             {/* API key input */}
             <div className="space-y-2">
-              <label htmlFor="apiKey" className="text-sm font-medium text-muted-foreground flex items-center">
+              <label htmlFor="apiKey" className="text-sm font-medium text-purple-100/80 flex items-center">
                 Gemini API Key
                 <div className="ml-2 cursor-help group relative">
-                  <AlertCircle className="h-4 w-4 text-muted-foreground" />
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 p-2 bg-black/80 rounded-md text-xs opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  <AlertCircle className="h-4 w-4 text-purple-200/60" />
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 p-2 bg-black/80 rounded-md text-xs opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                     You need a Gemini API key with access to the gemini-2.0-flash-exp-image-generation model. Get it from Google AI Studio.
                   </div>
                 </div>
@@ -239,29 +233,29 @@ const ImageEditor: React.FC = () => {
               <Input
                 id="apiKey"
                 type="password"
-                className="glass-input"
+                className="bg-white/5 backdrop-blur-md border border-white/10 focus:border-purple-500/50 focus:bg-white/10 transition-all duration-300"
                 placeholder="Enter your Gemini API key"
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
               />
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-purple-100/60">
                 Your API key is used locally and never stored on our servers.
               </p>
             </div>
             
             {/* Prompt input */}
             <div className="space-y-2">
-              <label htmlFor="prompt" className="text-sm font-medium text-muted-foreground">
+              <label htmlFor="prompt" className="text-sm font-medium text-purple-100/80">
                 Editing Prompt
               </label>
               <Textarea
                 id="prompt"
-                className="glass-input min-h-[100px]"
+                className="bg-white/5 backdrop-blur-md border border-white/10 focus:border-purple-500/50 focus:bg-white/10 transition-all duration-300 min-h-[100px]"
                 placeholder="Describe how you want to edit the image... e.g. 'Make the sky more dramatic with stormy clouds'"
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
               />
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-purple-100/60">
                 Be specific and descriptive. The model works best with clear instructions.
               </p>
             </div>
@@ -269,7 +263,7 @@ const ImageEditor: React.FC = () => {
             {/* Action buttons */}
             <div className="flex space-x-3">
               <Button 
-                className="flex-1 neo-glow bg-primary hover:bg-primary/90"
+                className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 relative shadow-lg shadow-purple-500/20"
                 onClick={handleGenerateImage}
                 disabled={isLoading || !imageFile}
               >
@@ -284,7 +278,7 @@ const ImageEditor: React.FC = () => {
               {outputImage && (
                 <Button
                   variant="outline"
-                  className="glass-panel"
+                  className="bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10"
                   onClick={downloadImage}
                 >
                   <Download className="h-4 w-4" />
@@ -294,7 +288,7 @@ const ImageEditor: React.FC = () => {
               {outputImage && (
                 <Button
                   variant="outline"
-                  className="glass-panel"
+                  className="bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10"
                   onClick={revertToOriginal}
                 >
                   <Undo2 className="h-4 w-4" />
@@ -305,11 +299,11 @@ const ImageEditor: React.FC = () => {
           
           {/* Right column - Output image */}
           <div className="flex flex-col space-y-6">
-            <div className="relative w-full h-64 rounded-xl glass-panel flex items-center justify-center overflow-hidden">
+            <div className="relative w-full h-64 rounded-xl bg-gradient-to-br from-black/40 to-purple-900/20 backdrop-blur-md border border-white/10 flex items-center justify-center overflow-hidden">
               {isLoading ? (
                 <div className="flex flex-col items-center justify-center">
-                  <Loader2 className="h-12 w-12 animate-spin text-primary mb-4" />
-                  <p className="text-sm text-center text-muted-foreground">
+                  <Loader2 className="h-12 w-12 animate-spin text-purple-400 mb-4" />
+                  <p className="text-sm text-center text-purple-100/70">
                     AI is working on your image...
                   </p>
                 </div>
@@ -320,7 +314,7 @@ const ImageEditor: React.FC = () => {
                   className="w-full h-full object-contain animate-zoom-in"
                 />
               ) : (
-                <div className="flex flex-col items-center justify-center text-muted-foreground">
+                <div className="flex flex-col items-center justify-center text-purple-100/60">
                   <ImageIcon className="h-12 w-12 mb-2 opacity-50" />
                   <p className="text-sm text-center">
                     {imagePreview ? "Transformed image will appear here" : "Upload an image to start"}
@@ -332,20 +326,20 @@ const ImageEditor: React.FC = () => {
             {/* History section */}
             {history.length > 0 && (
               <div className="space-y-4">
-                <h3 className="text-sm font-medium flex items-center text-muted-foreground">
+                <h3 className="text-sm font-medium flex items-center text-purple-100/80">
                   <History className="h-4 w-4 mr-2" />
                   Recent Transformations
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
                   {history.map((item, index) => (
-                    <div key={index} className="group relative rounded-lg overflow-hidden glass-panel h-24 hover:ring-1 hover:ring-primary/50 transition-all cursor-pointer">
+                    <div key={index} className="group relative rounded-lg overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm h-24 hover:border-purple-500/40 transition-all cursor-pointer">
                       <img 
                         src={item.imageUrl} 
                         alt={`History ${index}`} 
                         className="w-full h-full object-cover"
                         onClick={() => setOutputImage(item.imageUrl)}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end opacity-0 group-hover:opacity-100 transition-opacity p-2">
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex items-end opacity-0 group-hover:opacity-100 transition-opacity p-2">
                         <p className="text-xs truncate w-full">{item.prompt}</p>
                       </div>
                     </div>

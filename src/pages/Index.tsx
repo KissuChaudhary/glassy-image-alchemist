@@ -2,7 +2,6 @@
 import React from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import ImageEditor from "@/components/ImageEditor";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import Examples from "@/components/Examples";
@@ -15,13 +14,6 @@ const Index: React.FC = () => {
       
       <main className="flex-1">
         <Hero />
-        
-        <div id="editor-section" className="py-16 w-full">
-          <div className="container mx-auto px-4">
-            <ImageEditor />
-          </div>
-        </div>
-        
         <Features />
         <HowItWorks />
         <Examples />
