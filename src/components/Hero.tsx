@@ -1,10 +1,25 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown, Sparkles, Play } from "lucide-react";
 import ImageEditor from "@/components/ImageEditor";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const Hero: React.FC = () => {
+  const [videoOpen, setVideoOpen] = useState(false);
+
+  const scrollToPrompt = () => {
+    const promptSection = document.getElementById('prompt-section');
+    if (promptSection) {
+      promptSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen w-full pt-20 overflow-hidden">
       {/* Enhanced animated background elements */}
@@ -34,12 +49,13 @@ const Hero: React.FC = () => {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <Button size="lg" className="neo-glow text-base group">
+            <Button size="lg" className="neo-glow text-base group" onClick={scrollToPrompt}>
               Try It Now
               <ArrowDown className="ml-1 h-4 w-4 group-hover:animate-bounce" />
             </Button>
-            <Button size="lg" variant="outline" className="glass-panel text-base">
+            <Button size="lg" variant="outline" className="glass-panel text-base" onClick={() => setVideoOpen(true)}>
               Watch Demo
+              <Play className="ml-1 h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -49,6 +65,27 @@ const Hero: React.FC = () => {
           <ImageEditor />
         </div>
       </div>
+
+      {/* YouTube video modal */}
+      <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
+        <DialogContent className="sm:max-w-[800px] bg-black/90 border-emerald-500/20">
+          <DialogHeader>
+            <DialogTitle className="text-xl text-center mb-4">Watch Demo</DialogTitle>
+          </DialogHeader>
+          <div className="aspect-video w-full">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+              title="Demo Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-md"
+            ></iframe>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

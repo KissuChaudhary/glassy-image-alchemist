@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -244,8 +243,8 @@ const ImageEditor: React.FC = () => {
               </p>
             </div>
             
-            {/* Prompt input */}
-            <div className="space-y-2">
+            {/* Prompt input - Added id="prompt-section" here */}
+            <div id="prompt-section" className="space-y-2">
               <label htmlFor="prompt" className="text-sm font-medium text-emerald-100/80">
                 Editing Prompt
               </label>
