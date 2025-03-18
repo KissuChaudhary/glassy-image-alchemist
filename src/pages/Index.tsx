@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 import Showcase from "@/components/Showcase";
 import UseCases from "@/components/UseCases";
 import SchemaMarkup from "@/components/SchemaMarkup";
-import CursorEffect from '@/components/Cursoreffects';
+import CursorEffect from '@/components/CursorEffect';
 
 
 const Index: React.FC = () => {
