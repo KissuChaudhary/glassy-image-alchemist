@@ -14,7 +14,7 @@
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
     
-    --primary: 252 59% 48%;
+    --primary: 160 64% 52%;
     --primary-foreground: 0 0% 98%;
     
     --secondary: 217 33% 17%;
@@ -31,7 +31,7 @@
     
     --border: 217 33% 17%;
     --input: 217 33% 17%;
-    --ring: 224 76.3% 48%;
+    --ring: 196 80% 60%;
     
     --radius: 0.75rem;
   }
@@ -39,15 +39,15 @@
 
 @layer base {
   * {
-    @apply border-border selection:bg-purple-500/20 selection:text-foreground;
+    @apply border-border selection:bg-sky-500/20 selection:text-foreground;
   }
   
   body {
     @apply bg-background text-foreground antialiased overflow-x-hidden;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
     background-image: 
-      radial-gradient(circle at top right, rgba(120, 80, 229, 0.15) 0%, transparent 30%),
-      radial-gradient(circle at bottom left, rgba(240, 80, 200, 0.1) 0%, transparent 30%);
+      radial-gradient(circle at top right, rgba(56, 189, 148, 0.15) 0%, transparent 30%),
+      radial-gradient(circle at bottom left, rgba(33, 158, 188, 0.1) 0%, transparent 30%);
     background-attachment: fixed;
   }
 
@@ -79,7 +79,7 @@
   }
   
   .neo-glow::after {
-    @apply content-[''] absolute inset-0 rounded-[inherit] bg-gradient-to-r from-purple-500/20 to-pink-500/10 opacity-0 blur-xl transition-all duration-500 -z-10;
+    @apply content-[''] absolute inset-0 rounded-[inherit] bg-gradient-to-r from-emerald-500/20 to-sky-500/10 opacity-0 blur-xl transition-all duration-500 -z-10;
   }
   
   .neo-glow:hover::after {
@@ -95,7 +95,7 @@
   }
   
   .btn-gradient-border::before {
-    @apply content-[''] absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 -z-10;
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-emerald-500 to-sky-500 -z-10;
   }
   
   .btn-gradient-border::after {
@@ -108,10 +108,10 @@
   
   @keyframes glow {
     from {
-      box-shadow: 0 0 5px rgba(123, 97, 255, 0.2), 0 0 10px rgba(123, 97, 255, 0.2);
+      box-shadow: 0 0 5px rgba(56, 178, 172, 0.2), 0 0 10px rgba(56, 178, 172, 0.2);
     }
     to {
-      box-shadow: 0 0 10px rgba(123, 97, 255, 0.4), 0 0 20px rgba(123, 97, 255, 0.4);
+      box-shadow: 0 0 10px rgba(56, 178, 172, 0.4), 0 0 20px rgba(56, 178, 172, 0.4);
     }
   }
   
@@ -125,7 +125,7 @@
   }
   
   .gradient-border::before {
-    @apply content-[''] absolute inset-0 p-[1px] bg-gradient-to-r from-purple-500/50 to-pink-500/50 rounded-[inherit] -z-10;
+    @apply content-[''] absolute inset-0 p-[1px] bg-gradient-to-r from-emerald-500/50 to-sky-500/50 rounded-[inherit] -z-10;
   }
 }
 
