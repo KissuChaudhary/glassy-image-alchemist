@@ -1,22 +1,24 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Sparkles } from "lucide-react";
 import ImageEditor from "@/components/ImageEditor";
 
 const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen w-full pt-20 overflow-hidden">
-      {/* Animated background elements */}
+      {/* Enhanced animated background elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500/20 rounded-full filter blur-3xl animate-float"></div>
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/20 rounded-full filter blur-3xl animate-float" style={{ animationDelay: "2s" }}></div>
         <div className="absolute top-1/2 right-1/3 w-72 h-72 bg-pink-500/10 rounded-full filter blur-3xl animate-float" style={{ animationDelay: "4s" }}></div>
+        <div className="absolute bottom-1/3 left-1/3 w-96 h-96 bg-indigo-500/15 rounded-full filter blur-3xl animate-float" style={{ animationDelay: "3s" }}></div>
       </div>
       
-      <div className="container relative z-10 px-4 py-12 md:py-20">
-        <div className="max-w-5xl mx-auto text-center mb-12">
+      <div className="container relative z-10 px-4 py-8 md:py-16">
+        <div className="max-w-5xl mx-auto text-center mb-10">
           <div className="inline-flex items-center text-sm font-medium px-3 py-1 glass-panel rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 mb-6 animate-pulse-slow">
+            <Sparkles className="h-3.5 w-3.5 mr-1.5 text-purple-400" />
             <span>Powered by Google Gemini 2.0 Flash</span>
           </div>
           
@@ -30,10 +32,20 @@ const Hero: React.FC = () => {
             Edit, enhance, and reimagine your images using AI-powered text prompts.
             No design skills needed – just describe what you want, and watch the magic happen.
           </p>
+          
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <Button size="lg" className="neo-glow text-base group">
+              Try It Now
+              <ArrowDown className="ml-1 h-4 w-4 group-hover:animate-bounce" />
+            </Button>
+            <Button size="lg" variant="outline" className="glass-panel text-base">
+              Watch Demo
+            </Button>
+          </div>
         </div>
         
-        {/* Image Editor embedded directly in the hero section */}
-        <div className="max-w-6xl mx-auto">
+        {/* Image Editor embedded directly in the hero section with enhanced styling */}
+        <div className="max-w-6xl mx-auto glass-panel p-5 rounded-2xl border border-purple-500/20 shadow-[0_8px_32px_rgba(120,80,229,0.2)]">
           <ImageEditor />
         </div>
       </div>

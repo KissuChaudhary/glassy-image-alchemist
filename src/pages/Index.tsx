@@ -5,6 +5,9 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import Examples from "@/components/Examples";
+import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
+import GetStarted from "@/components/GetStarted";
 import Footer from "@/components/Footer";
 
 const Index: React.FC = () => {
@@ -17,6 +20,9 @@ const Index: React.FC = () => {
         <Features />
         <HowItWorks />
         <Examples />
+        <Testimonials />
+        <GetStarted />
+        <FAQ />
       </main>
       
       <Footer />

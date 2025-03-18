@@ -75,7 +75,7 @@
   }
   
   .neo-glow {
-    @apply relative;
+    @apply relative transition-all duration-300;
   }
   
   .neo-glow::after {
@@ -113,6 +113,19 @@
     to {
       box-shadow: 0 0 10px rgba(123, 97, 255, 0.4), 0 0 20px rgba(123, 97, 255, 0.4);
     }
+  }
+  
+  /* New utilities for enhanced UI */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+  
+  .gradient-border {
+    @apply relative;
+  }
+  
+  .gradient-border::before {
+    @apply content-[''] absolute inset-0 p-[1px] bg-gradient-to-r from-purple-500/50 to-pink-500/50 rounded-[inherit] -z-10;
   }
 }
 
@@ -156,4 +169,38 @@
 
 .animate-zoom-in {
   animation: zoom-in 0.5s ease-out forwards;
+}
+
+/* Enhanced scroll reveal animation */
+@keyframes reveal-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.reveal-animation {
+  opacity: 0;
+}
+
+.reveal-animation.active {
+  animation: reveal-up 0.6s ease-out forwards;
+}
+
+/* Bounce animation for UI elements */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce 2s ease-in-out infinite;
 }
