@@ -58,55 +58,55 @@ const Features: React.FC = () => {
         <div className="text-center mb-12">
           <div className="inline-flex items-center text-sm font-medium px-3 py-1 glass-panel rounded-full text-primary mb-4">
             <Sparkles className="h-3.5 w-3.5 mr-1.5" />
-            <span>Cutting-edge AI Technology</span>
+            <span>PicshotAI - www.picshotai.com</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">Features that Transform Your Workflow</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">Edit Images with Natural Language</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Harness the full potential of Google's Gemini 2.0 Flash model with our intuitive interface.
-            Transform images with simple prompts, no complex editing skills required.
+            Transform your images using simple text prompts. Just describe the changes you want,
+            and watch PicshotAI bring your creative vision to life instantly.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <FeatureCard 
             icon={<Wand2 className="h-5 w-5" />}
-            title="Intuitive Transformations"
-            description="Simply describe what you want to change about your image, and let the AI handle the technical details."
+            title="Magical Transformations"
+            description="Change appearances with ease - make someone bald, add costumes, or transform objects like turning a bike into a horse, all through simple text prompts."
             delay={0}
           />
           
           <FeatureCard 
             icon={<Repeat className="h-5 w-5" />}
-            title="Unlimited Edits"
-            description="Experiment with different prompts and transformations until you achieve the perfect result."
+            title="Background Wizardry"
+            description="Instantly change or replace backgrounds with your desired scene - from serene beaches to urban graffiti walls, the possibilities are endless."
             delay={100}
           />
           
           <FeatureCard 
             icon={<Zap className="h-5 w-5" />}
-            title="Lightning Fast"
-            description="Powered by Google's Gemini 2.0 Flash model for rapid image generation without compromising on quality."
+            title="Object Addition & Removal"
+            description="Add or remove objects naturally - surround a person with puppies, remove unwanted elements, or add new objects that blend seamlessly."
             delay={200}
           />
           
           <FeatureCard 
             icon={<Lock className="h-5 w-5" />}
-            title="Privacy First"
-            description="Your images and API keys remain on your device. We never store or access your content or credentials."
+            title="Character Customization"
+            description="Dress up subjects in any style - add superhero costumes, change outfits, or transform characters while maintaining natural looks."
             delay={300}
           />
           
           <FeatureCard 
             icon={<Layers className="h-5 w-5" />}
-            title="Advanced Edits"
-            description="From style transfers to complex manipulations, achieve professional-level edits with simple text prompts."
+            title="Creative Freedom"
+            description="Let your imagination run wild - combine multiple edits, create fantastical scenes, or make subtle adjustments using natural language."
             delay={400}
           />
           
           <FeatureCard 
             icon={<DownloadCloud className="h-5 w-5" />}
-            title="Easy Export"
-            description="Download your transformed images in high resolution for use in any project."
+            title="Instant Results"
+            description="See your ideas come to life immediately. No technical skills needed - just describe what you want, and let AI handle the rest."
             delay={500}
           />
         </div>

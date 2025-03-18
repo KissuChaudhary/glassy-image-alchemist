@@ -4,7 +4,7 @@ import {
   ImageIcon, 
   ShoppingBag, 
   Users, 
-  MessageSquare, 
+  Wand2, 
   Palette, 
   ImagePlus,
   Globe,
@@ -31,7 +31,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({
   return (
     <div 
       className={cn(
-        "glass-panel p-6 rounded-xl",
+        "glass-panel p-6 rounded-xl neo-glow",
         "transform transition-all duration-500 hover:-translate-y-1",
         className
       )}
@@ -42,10 +42,10 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({
       }}
     >
       <div className="flex items-center space-x-4 mb-4">
-        <div className="p-2 glass-panel rounded-lg text-sky-400">
+        <div className="p-2 glass-panel rounded-lg text-primary">
           {icon}
         </div>
-        <h3 className="text-lg font-medium">{title}</h3>
+        <h3 className="text-lg font-medium text-gradient">{title}</h3>
       </div>
       <p className="text-sm text-muted-foreground">{description}</p>
     </div>
@@ -54,7 +54,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({
 
 const UseCases: React.FC = () => {
   return (
-    <section id="use-cases" className="py-16 w-full bg-gradient-to-b from-background to-emerald-950/10">
+    <section id="use-cases" className="py-16 w-full">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">Endless Possibilities</h2>
@@ -66,44 +66,44 @@ const UseCases: React.FC = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <UseCaseCard 
-            icon={<ShoppingBag className="h-5 w-5" />}
-            title="E-commerce"
-            description="Enhance product photos, remove backgrounds, and create consistent product imagery across your entire catalog without professional photography."
+            icon={<Wand2 className="h-5 w-5" />}
+            title="Portrait Enhancement"
+            description="Transform portraits with natural language commands - change hairstyles, add accessories, or modify facial features while maintaining photorealistic quality."
             delay={0}
           />
           
           <UseCaseCard 
-            icon={<Users className="h-5 w-5" />}
-            title="Social Media"
-            description="Create eye-catching posts and profile images with AI-enhanced visuals that stand out from the crowd and increase engagement."
+            icon={<ImagePlus className="h-5 w-5" />}
+            title="Background Magic"
+            description="Simply describe your desired setting and watch as AI seamlessly places your subjects in new environments - from exotic locations to fantasy worlds."
             delay={100}
           />
           
           <UseCaseCard 
-            icon={<Globe className="h-5 w-5" />}
-            title="Web Design"
-            description="Generate and modify website imagery, banners, and graphics to match your brand's aesthetic without expensive design software."
+            icon={<Palette className="h-5 w-5" />}
+            title="Style Transfer"
+            description="Transform your photos into different artistic styles with text prompts - turn snapshots into oil paintings, watercolors, or any artistic style you can describe."
             delay={200}
           />
           
           <UseCaseCard 
-            icon={<MessageSquare className="h-5 w-5" />}
-            title="Marketing"
-            description="Create compelling visual content for campaigns, ads, and promotional materials in seconds rather than hours or days."
+            icon={<Users className="h-5 w-5" />}
+            title="Group Photo Perfection"
+            description="Fix group photos effortlessly - replace closed eyes, add missing people, or adjust positioning using simple text instructions."
             delay={300}
           />
           
           <UseCaseCard 
-            icon={<Camera className="h-5 w-5" />}
-            title="Photography"
-            description="Rescue poor-quality shots, adjust lighting, remove unwanted elements, and apply artistic effects to elevate your photography."
+            icon={<ImageIcon className="h-5 w-5" />}
+            title="Object Manipulation"
+            description="Add, remove, or modify objects in your images naturally - from removing photobombers to adding props, all through conversational commands."
             delay={400}
           />
           
           <UseCaseCard 
             icon={<Layers className="h-5 w-5" />}
-            title="Content Creation"
-            description="Generate custom imagery for blogs, articles, presentations, and other content without worrying about copyright issues."
+            title="Creative Effects"
+            description="Apply complex visual effects with simple words - add magical glows, dramatic lighting, weather effects, or any creative enhancement you can imagine."
             delay={500}
           />
         </div>

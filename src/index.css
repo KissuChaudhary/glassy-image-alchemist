@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,56 +6,76 @@
   :root {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-    
+
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
-    
+
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    
-    --primary: 160 64% 52%;
-    --primary-foreground: 0 0% 98%;
-    
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20.2% 65.1%;
-    
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 40% 98%;
-    
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 196 80% 60%;
-    
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
     --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
 @layer base {
   * {
-    @apply border-border selection:bg-sky-500/20 selection:text-foreground;
+    @apply border-border selection:bg-neon-blue/20 selection:text-white;
+  }
+  
+  html {
+    @apply scroll-smooth;
   }
   
   body {
-    @apply bg-background text-foreground antialiased overflow-x-hidden;
+    @apply bg-dark text-white antialiased min-h-screen;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
-    background-image: 
-      radial-gradient(circle at top right, rgba(56, 189, 148, 0.15) 0%, transparent 30%),
-      radial-gradient(circle at bottom left, rgba(33, 158, 188, 0.1) 0%, transparent 30%);
-    background-attachment: fixed;
-  }
-
-  html {
-    @apply scroll-smooth;
   }
 }
 
 @layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-neon-blue via-white to-neon-green bg-clip-text text-transparent;
+  }
+  
+  .custom-cursor {
+    @apply fixed pointer-events-none z-50 w-6 h-6 rounded-full mix-blend-difference bg-white transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-out;
+  }
+  
+  .custom-cursor-trailer {
+    @apply fixed pointer-events-none z-40 w-24 h-24 rounded-full bg-neon-green/10 backdrop-blur-sm transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-out;
+  }
+  
+  .glass-card {
+    @apply relative overflow-hidden transition-all;
+  }
   .scrollbar-none {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -86,9 +105,7 @@
     @apply opacity-100;
   }
   
-  .text-gradient {
-    @apply bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent;
-  }
+
   
   .btn-gradient-border {
     @apply relative rounded-md overflow-hidden;
@@ -203,4 +220,180 @@
 
 .animate-bounce-slow {
   animation: bounce 2s ease-in-out infinite;
+}
+/* Glass morphism effects */
+.glass-card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: skewX(-15deg);
+  transition: all 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.glass-card:hover:before {
+  left: 100%;
+  transition: 0.8s ease-in-out;
+}
+
+.glass-card:hover {
+  box-shadow: 0 0 25px rgba(0, 255, 157, 0.1);
+}
+
+/* Hide scrollbar but allow scrolling */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes particles-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.2;
+  }
+  75% {
+    opacity: 0.1;
+  }
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 100;
+}
+
+@keyframes shift {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(12deg);
+  }
+  50% {
+    transform: translateX(100%) translateY(100%) rotate(12deg);
+  }
+  100% {
+    transform: translateX(-100%) translateY(-100%) rotate(12deg);
+  }
+}
+
+.animate-shift {
+  animation: shift 5s linear infinite;
+}
+
+/* Define dissolve animation */
+@keyframes dissolve {
+  0% { 
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  100% { 
+    opacity: 0;
+    filter: blur(15px);
+    transform: scale(1.2);
+  }
+}
+
+.animate-dissolve {
+  animation: dissolve 0.8s ease-out forwards;
+}
+
+/* Define appear animation for embedded content */
+@keyframes appear {
+  0% { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-appear {
+  animation: appear 0.8s ease-out forwards;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  .glass-card {
+    max-width: 100%;
+  }
+}
+
+@keyframes float-particle {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-200px) translateX(100px);
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 1;
+  }
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

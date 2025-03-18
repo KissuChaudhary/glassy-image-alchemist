@@ -24,6 +24,8 @@ export default {
     },
     extend: {
       colors: {
+        'neon-blue': '#00BFFF',
+        'neon-green': '#39FF14',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -56,7 +58,15 @@ export default {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
-        }
+        },
+        neon: {
+					green: "#00FF9D",
+					blue: "#00E5FF",
+				},
+				dark: {
+					DEFAULT: "#0F0F12",
+					lighter: "#1A1A21",
+				},
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -77,8 +87,8 @@ export default {
           '50%': { transform: 'translateY(-10px)' }
         },
         'pulse-slow': {
-          '0%, 100%': { opacity: 1 },
-          '50%': { opacity: 0.7 }
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.7' }
         },
         'spin-slow': {
           '0%': { transform: 'rotate(0deg)' },

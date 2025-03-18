@@ -4,15 +4,16 @@ import { Sparkles, Github, Twitter, Mail, Heart } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full py-8 relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
+    <footer className="w-full py-8  overflow-hidden">
+      
+      <div className="container mx-auto px-4 relative z-10 ">
         {/* Animated elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full filter blur-3xl animate-float"></div>
           <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-primary/10 rounded-full filter blur-3xl animate-float" style={{ animationDelay: "2s" }}></div>
         </div>
         
-        <div className="glass-panel rounded-xl p-6 md:p-8 relative">
+        <div className="glass-panel rounded-xl p-6 md:p-8 relative ">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Logo and description */}
             <div className="flex flex-col space-y-4">

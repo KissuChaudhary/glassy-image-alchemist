@@ -19,22 +19,73 @@ interface StepProps {
 
 const Step: React.FC<StepProps> = ({ number, title, description, icon, isLast = false }) => {
   return (
-    <div className="relative flex flex-col md:flex-row items-start group">
-      {/* Step number and icon */}
-      <div className="z-10 flex-shrink-0 w-12 h-12 rounded-full glass-panel flex items-center justify-center shadow-lg group-hover:bg-primary/20 transition-colors duration-300">
-        {icon}
-      </div>
-      
-      {/* Connecting line */}
-      {!isLast && (
-        <div className="absolute left-6 top-12 h-full w-0.5 bg-gradient-to-b from-primary/20 to-primary/5 md:h-0.5 md:w-full md:top-6 md:left-12 md:bg-gradient-to-r"></div>
-      )}
-      
-      {/* Content */}
-      <div className="ml-0 md:ml-6 mt-4 md:mt-0">
-        <span className="inline-block px-2.5 py-0.5 rounded-full glass-panel text-xs font-medium text-primary mb-2">Step {number}</span>
-        <h3 className="text-lg font-medium text-gradient mb-2">{title}</h3>
-        <p className="text-sm text-muted-foreground">{description}</p>
+    <div 
+      className="relative flex flex-col items-center w-full h-full max-w-xs mx-auto transform transition-all duration-500 hover:scale-105 animate-fade-in"
+      style={{
+        animationDelay: `${number * 200}ms`
+      }}
+    >
+      <div className="w-full flex flex-col items-center h-full">
+        {/* Step number and icon */}
+        <div className="z-10 flex-shrink-0 w-16 h-16 rounded-full glass-panel flex items-center justify-center shadow-lg bg-primary/5 group-hover:bg-primary/20 transition-all duration-300">
+          {icon}
+        </div>
+        
+        {/* Content */}
+        <div className="mt-6 text-center w-full flex-1 flex flex-col">
+          <div className="glass-panel px-4 py-1 rounded-full text-xs font-medium text-primary mb-3 inline-flex items-center space-x-2 mx-auto">
+            <span className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-[10px]">{number}</span>
+            <span>Step {number}</span>
+          </div>
+          <h3 className="text-xl font-medium text-gradient mb-3">{title}</h3>
+          <p className="text-sm text-muted-foreground mb-6">{description}</p>
+          
+          {/* Interactive Mockup */}
+          <div className="glass-panel p-4 rounded-xl neo-glow w-full max-w-sm mx-auto transform transition-all duration-500 hover:-translate-y-1 flex-1 flex flex-col justify-center min-h-[200px]">
+            {number === 1 && (
+              <div className="border-2 border-dashed border-primary/30 rounded-lg p-6 text-center">
+                <Upload className="h-8 w-8 mx-auto mb-3 text-primary" />
+                <p className="text-sm text-primary/70">Drag & Drop or Click to Upload</p>
+              </div>
+            )}
+            {number === 2 && (
+              <div className="bg-primary/5 rounded-lg p-4">
+                <div className="glass-panel rounded-md p-3 mb-2">
+                  <Type className="h-4 w-4 text-primary inline mr-2" />
+                  <span className="text-sm text-primary/70">Write your prompt here...</span>
+                </div>
+                <div className="flex space-x-2">
+                  <div className="glass-panel rounded-md p-2 text-xs text-primary/70">Style Transfer</div>
+                  <div className="glass-panel rounded-md p-2 text-xs text-primary/70">Background Change</div>
+                </div>
+              </div>
+            )}
+            {number === 3 && (
+              <div className="relative overflow-hidden rounded-lg aspect-video bg-primary/5">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="animate-pulse">
+                    <Sparkles className="h-8 w-8 text-primary" />
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary/20">
+                  <div className="h-full w-1/2 bg-primary animate-[progress_2s_ease-in-out_infinite]"></div>
+                </div>
+              </div>
+            )}
+            {number === 4 && (
+              <div className="space-y-3">
+                <div className="glass-panel rounded-lg p-2 flex items-center justify-between">
+                  <span className="text-sm text-primary/70">transformed_image.png</span>
+                  <Download className="h-4 w-4 text-primary" />
+                </div>
+                <div className="glass-panel rounded-lg p-2 flex items-center justify-between opacity-50">
+                  <span className="text-sm text-primary/70">original_image.png</span>
+                  <Download className="h-4 w-4 text-primary" />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -51,8 +102,8 @@ const HowItWorks: React.FC = () => {
           </p>
         </div>
         
-        <div className="glass-panel rounded-2xl p-8 max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-4">
+        <div className="glass-panel rounded-2xl p-8 mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-4">
             <Step 
               number={1} 
               title="Upload Image"
