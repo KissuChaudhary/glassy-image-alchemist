@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
           
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 animate-zoom-in" style={{ animationDelay: "200ms" }}>
             Edit, enhance, and reimagine your images using AI-powered text prompts.
-            No design skills needed – just describe what you want, and watch the magic happen.
+            Our advanced image editing technology uses Google Gemini 2.0 Flash to transform ordinary photos into extraordinary visuals—no design skills needed.
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 mb-12">

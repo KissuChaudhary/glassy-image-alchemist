@@ -9,15 +9,21 @@ import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import GetStarted from "@/components/GetStarted";
 import Footer from "@/components/Footer";
+import Showcase from "@/components/Showcase";
+import UseCases from "@/components/UseCases";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 const Index: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <SchemaMarkup />
       <Header />
       
       <main className="flex-1">
         <Hero />
         <Features />
+        <Showcase />
+        <UseCases />
         <HowItWorks />
         <Examples />
         <Testimonials />
