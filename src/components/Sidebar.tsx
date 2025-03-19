@@ -74,8 +74,8 @@ export default function Sidebar() {
   
   return (
     <aside className={cn(
-      'fixed z-50 h-full bg-black/90 backdrop-blur-xl border-r border-white/5',
-      isMobile ? 'w-[var(--sidebar-mobile-width)]' : expanded ? 'w-[var(--sidebar-width)]' : 'w-[var(--sidebar-collapsed-width)]',
+      'min-h-screen bg-black/90 backdrop-blur-xl border-r border-white/5',
+      isMobile ? 'fixed z-50 w-[var(--sidebar-mobile-width)]' : expanded ? 'w-[var(--sidebar-width)]' : 'w-[var(--sidebar-collapsed-width)]',
       isMobile ? 'transition-transform ease-out duration-300' : 'transition-all duration-300',
       isMobile && !mobileOpen ? '-translate-x-full' : 'translate-x-0'
     )}>
