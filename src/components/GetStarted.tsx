@@ -37,7 +37,7 @@ const GetStarted: React.FC = () => {
         
         <div className="relative max-w-5xl mx-auto">
           {/* Connect line between steps */}
-          <div className="absolute top-16 left-1/2 -translate-x-1/2 w-px h-[calc(100%-8rem)] bg-gradient-to-b from-emerald-500/30 to-blue-500/30 hidden md:block"></div>
+          <div className="absolute top-16 left-1/2 -translate-x-1/2 w-px h-[calc(100%-8rem)] bg-gradient-to-b from-purple-500/30 to-pink-500/30 hidden md:block"></div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {steps.map((step, index) => (
@@ -51,7 +51,7 @@ const GetStarted: React.FC = () => {
               >
                 <div className="glass-panel p-6 rounded-xl h-full neo-glow">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-14 h-14 rounded-full glass-panel flex items-center justify-center mb-4 text-primary bg-gradient-to-br from-emerald-500/20 to-blue-500/20">
+                    <div className="w-14 h-14 rounded-full glass-panel flex items-center justify-center mb-4 text-primary bg-gradient-to-br from-purple-500/20 to-pink-500/20">
                       {step.icon}
                     </div>
                     
@@ -75,7 +75,7 @@ const GetStarted: React.FC = () => {
         </div>
         
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-12">
-          <div className="flex items-center glass-panel px-6 py-4 rounded-xl bg-gradient-to-r from-emerald-500/10 to-blue-500/10 w-full max-w-md">
+          <div className="flex items-center glass-panel px-6 py-4 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 w-full max-w-md">
             <div className="p-2 rounded-full bg-green-500/20 mr-3 flex-shrink-0">
               <Check className="h-5 w-5 text-green-400" />
             </div>
@@ -84,7 +84,10 @@ const GetStarted: React.FC = () => {
             </p>
           </div>
           
-      
+          <Button size="lg" className="neo-glow w-full md:w-auto min-w-[200px]">
+            Transform Your First Image
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
         </div>
       </div>
     </section>

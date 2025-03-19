@@ -59,7 +59,8 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        neon: {
+        // Custom colors for the portfolio
+				neon: {
 					green: "#00FF9D",
 					blue: "#00E5FF",
 				},

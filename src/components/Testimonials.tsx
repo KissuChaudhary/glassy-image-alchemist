@@ -131,7 +131,10 @@ const Testimonials: React.FC = () => {
                 "flex transition-transform duration-300 ease-out snap-x snap-mandatory",
                 isDragging ? "cursor-grabbing" : "cursor-grab"
               )}
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              style={{
+                transform: `translateX(-${currentSlide * 100}%)`,
+                minWidth: "100%"
+              }}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
@@ -139,8 +142,8 @@ const Testimonials: React.FC = () => {
             >
               {testimonials.map((testimonial, index) => (
                 <div
-                  key={testimonial.id} // Added key prop
-                  className="min-w-full glass-panel rounded-xl p-6 transition-all duration-500 neo-glow"
+                  key={testimonial.id}
+                  className="glass-panel rounded-xl p-6 transition-all duration-500 neo-glow h-full flex-shrink-0 w-full"
                   style={{
                     opacity: 0,
                     animation: `fade-in-up 0.6s ease-out ${index * 100}ms forwards`

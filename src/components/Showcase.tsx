@@ -108,11 +108,10 @@ const ImageTransformer = ({ item }: { item: (typeof showcaseItems)[0] }) => {
               alt="Transformed image"
               className="w-full h-full object-cover"
             />
-            <div className="absolute bottom-4 left-4 glass-panel  px-3 py-1 rounded-full text-xs flex text-primary z-50 backdrop-blur-sm bg-black/20 border border-white/20 shadow-lg">
-              <Sparkles className="h-3 w-3 mr-1 mt-1 text-primary" />
+            <div className="absolute bottom-4 right-4 glass-panel neo-glow px-3 py-1 rounded-full text-xs text-primary z-50 flex items-center backdrop-blur-sm bg-black/20 border border-white/20 shadow-lg">
+              <Sparkles className="h-3 w-3 mr-1 text-primary" />
               Transformed
             </div>
-       
           </motion.div>
         )}
       </AnimatePresence>
@@ -194,7 +193,7 @@ const Showcase: React.FC = () => {
       id="showcase"
       className="py-24 w-full bg-gradient-to-b from-background to-emerald-950/10 overflow-hidden"
     >
-      <div className="mx-auto px-4 relative">
+      <div className="container mx-auto px-4 relative">
         {/* Background glow effects */}
         <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-emerald-500/20 rounded-full blur-[120px] opacity-30" />
         <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-sky-500/20 rounded-full blur-[120px] opacity-30" />
@@ -207,13 +206,13 @@ const Showcase: React.FC = () => {
           className="text-center mb-16 max-w-3xl mx-auto relative z-10"
         >
           <div className="inline-flex items-center justify-center gap-2 mb-4 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
-            <Wand2 className="h-5 w-5 text-emerald-300" />
-            <span className="text-sm font-medium text-gradient uppercase tracking-wider">
+            <Wand2 className="h-5 w-5 " />
+            <span className="text-sm font-medium uppercase tracking-wider">
               AI Transformation Studio
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
-            <span className="text-gradient">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+            <span className="text-3xl md:text-4xl font-bold text-gradient mb-4">
               Transform Images with AI Magic
             </span>
           </h2>
