@@ -24,8 +24,14 @@ export default defineConfig(({ mode }) => ({
     chunkSizeWarningLimit: 800
   },
   server: {
-    host: "::",
+    host: true,
     port: 8080,
+    strictPort: true
+  },
+  preview: {
+    host: true,
+    port: 8080,
+    strictPort: true
   },
   plugins: [
     react()
