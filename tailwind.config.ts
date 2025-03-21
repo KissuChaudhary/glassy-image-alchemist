@@ -26,6 +26,7 @@ export default {
       colors: {
         'neon-blue': '#00BFFF',
         'neon-green': '#39FF14',
+        'dark': '#121212',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -58,16 +59,7 @@ export default {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
-        },
-        // Custom colors for the portfolio
-				neon: {
-					green: "#00FF9D",
-					blue: "#00E5FF",
-				},
-				dark: {
-					DEFAULT: "#0F0F12",
-					lighter: "#1A1A21",
-				},
+        }
       },
       borderRadius: {
         lg: 'var(--radius)',

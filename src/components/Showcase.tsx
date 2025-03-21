@@ -207,7 +207,7 @@ const Showcase: React.FC = () => {
         >
           <div className="inline-flex items-center justify-center gap-2 mb-4 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
             <Wand2 className="h-5 w-5 " />
-            <span className="text-sm font-medium uppercase tracking-wider">
+            <span className="text-sm font-medium  uppercase tracking-wider">
               AI Transformation Studio
             </span>
           </div>

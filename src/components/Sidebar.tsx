@@ -109,7 +109,7 @@ export default function Sidebar() {
             active={activeItem === 'dashboard'} 
             expanded={expanded || isMobile}
             onClick={() => handleNavItemClick('dashboard')}
-            to="/"
+            to="/dashboard"
           />
           <NavItem 
             icon={<Image size={20} />} 

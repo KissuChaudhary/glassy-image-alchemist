@@ -117,7 +117,7 @@ const Testimonials: React.FC = () => {
             <Quote className="h-3.5 w-3.5 mr-1.5" />
             <span>Testimonials</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-4">What Our Users Say</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">What Our Users Say</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Join thousands of satisfied users who are transforming their images with AI
           </p>
@@ -128,12 +128,11 @@ const Testimonials: React.FC = () => {
             <div
               ref={carouselRef}
               className={cn(
-                "flex transition-transform duration-300 ease-out snap-x snap-mandatory",
+                "flex transition-transform duration-300 ease-out",
                 isDragging ? "cursor-grabbing" : "cursor-grab"
               )}
               style={{
-                transform: `translateX(-${currentSlide * 100}%)`,
-                minWidth: "100%"
+                transform: `translateX(-${currentSlide * 100}%)`
               }}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
@@ -143,7 +142,7 @@ const Testimonials: React.FC = () => {
               {testimonials.map((testimonial, index) => (
                 <div
                   key={testimonial.id}
-                  className="glass-panel rounded-xl p-6 transition-all duration-500 neo-glow h-full flex-shrink-0 w-full"
+                  className="min-w-full glass-panel rounded-xl p-6 transition-all duration-500 neo-glow h-full"
                   style={{
                     opacity: 0,
                     animation: `fade-in-up 0.6s ease-out ${index * 100}ms forwards`
