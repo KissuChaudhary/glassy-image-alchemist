@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { Menu } from 'lucide-react';
 import ProfileDropdown from './ProfileDropdown';
 import CreditsDisplay from './CreditsDisplay';
+import CursorEffect from './CursorEffect';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -57,6 +58,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       
       {/* Noise overlay */}
       <div className="noise-overlay"></div>
+      <CursorEffect />
     </div>
   );
 }

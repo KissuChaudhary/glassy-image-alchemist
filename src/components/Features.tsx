@@ -30,8 +30,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   return (
     <div 
       className={cn(
-        "glass-panel p-6 rounded-xl neo-glow",
-        "transform transition-all duration-500 hover:-translate-y-1",
+        "relative overflow-hidden glass-panel p-8 rounded-2xl neo-glow",
+        "transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl",
+        "before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary/5 before:to-transparent before:opacity-0 before:transition-opacity hover:before:opacity-100",
         className
       )}
       style={{ 
@@ -40,34 +41,42 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         animation: `zoom-in 0.5s ease-out ${delay}ms forwards`
       }}
     >
-      <div className="flex items-center space-x-4 mb-4">
-        <div className="p-2 glass-panel rounded-lg text-primary">
-          {icon}
+      <div className="relative z-10">
+        <div className="flex items-center space-x-4 mb-6">
+          <div className="p-3 glass-panel rounded-xl text-primary transform transition-transform group-hover:scale-110 hover:rotate-6">
+            {icon}
+          </div>
+          <h3 className="text-xl font-semibold text-gradient">{title}</h3>
         </div>
-        <h3 className="text-lg font-medium text-gradient">{title}</h3>
+        <p className="text-base text-muted-foreground leading-relaxed">{description}</p>
       </div>
-      <p className="text-sm text-muted-foreground">{description}</p>
     </div>
   );
 };
 
 const Features: React.FC = () => {
   return (
-    <section id="features" className="py-16 w-full">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center text-sm font-medium px-3 py-1 glass-panel rounded-full text-primary mb-4">
-            <Sparkles className="h-3.5 w-3.5 mr-1.5" />
+    <section id="features" className="relative py-24 w-full overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(var(--primary-rgb),0.1),transparent_50%)] pointer-events-none" />
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <div 
+            className="inline-flex items-center text-sm font-medium px-4 py-2 glass-panel rounded-full text-primary mb-6 hover:scale-105 transition-transform"
+            style={{ animation: 'float 3s ease-in-out infinite' }}
+          >
+            <Sparkles className="h-4 w-4 mr-2 animate-pulse" />
             <span>PicshotAI - www.picshotai.com</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">Edit Images with Natural Language</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="text-3xl md:text-4xl font-bold text-gradient mb-4 bg-clip-text text-transparent">Edit Images with Natural Language</span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Transform your images using simple text prompts. Just describe the changes you want,
             and watch PicshotAI bring your creative vision to life instantly.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <FeatureCard 
             icon={<Wand2 className="h-5 w-5" />}
             title="Magical Transformations"
@@ -116,3 +125,5 @@ const Features: React.FC = () => {
 };
 
 export default Features;
+
+

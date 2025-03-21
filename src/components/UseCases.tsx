@@ -45,7 +45,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({
         <div className="p-2 glass-panel rounded-lg text-primary">
           {icon}
         </div>
-        <h3 className="text-lg font-medium text-gradient">{title}</h3>
+        <h3 className="text-xl font-semibold text-gradient">{title}</h3>
       </div>
       <p className="text-sm text-muted-foreground">{description}</p>
     </div>

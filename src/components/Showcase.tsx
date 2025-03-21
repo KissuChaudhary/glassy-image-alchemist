@@ -74,7 +74,7 @@ const ImageTransformer = ({ item }: { item: (typeof showcaseItems)[0] }) => {
   }, [inView])
 
   return (
-    <div ref={ref} className="relative w-full h-full rounded-2xl overflow-hidden glass-panel">
+    <div ref={ref} className="relative w-full aspect-video rounded-2xl overflow-hidden glass-panel">
       <div className="absolute inset-0 bg-black/10 backdrop-blur-[2px] z-10 rounded-2xl"></div>
 
       <AnimatePresence mode="wait">
@@ -89,7 +89,7 @@ const ImageTransformer = ({ item }: { item: (typeof showcaseItems)[0] }) => {
             <img
               src={item.beforeImage || "/placeholder.svg"}
               alt="Original image"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
             <div className="absolute bottom-4 left-4 glass-panel px-3 py-1 rounded-full text-xs text-primary z-20">
               Original
@@ -106,7 +106,7 @@ const ImageTransformer = ({ item }: { item: (typeof showcaseItems)[0] }) => {
             <img
               src={item.afterImage || "/placeholder.svg"}
               alt="Transformed image"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
             <div className="absolute bottom-4 right-4 glass-panel neo-glow px-3 py-1 rounded-full text-xs text-primary z-50 flex items-center backdrop-blur-sm bg-black/20 border border-white/20 shadow-lg">
               <Sparkles className="h-3 w-3 mr-1 text-primary" />
@@ -223,8 +223,8 @@ const Showcase: React.FC = () => {
         </motion.div>
 
         {/* Feature Selection Tabs */}
-        <div className="mb-12 overflow-x-auto scrollbar-hide">
-          <div className="flex justify-center space-x-2 md:space-x-4 min-w-max mx-auto">
+        <div className="mb-8 overflow-x-auto scrollbar-hide">
+          <div className="flex justify-start md:justify-center space-x-2 min-w-max mx-auto px-4 md:px-0">
             {showcaseItems.map((item, index) => (
               <motion.button
                 key={item.id}
@@ -234,39 +234,46 @@ const Showcase: React.FC = () => {
                 viewport={{ once: true }}
                 onClick={() => setActiveIndex(index)}
                 className={cn(
-                  "relative px-6 py-4 rounded-xl transition-all duration-300 group",
-                  activeIndex === index ? "bg-white/5 backdrop-blur-md" : "hover:bg-white/5",
+                  "relative px-3 py-2 md:px-4 md:py-3 rounded-lg transition-all duration-300 group",
+                  activeIndex === index
+                    ? "bg-gradient-to-r from-white/10 to-white/5 shadow-md border border-white/10 backdrop-blur-[2px]"
+                    : "hover:bg-white/5 hover:border hover:border-white/10 hover:shadow-sm"
                 )}
               >
                 {/* Glow effect for active tab */}
                 {activeIndex === index && (
                   <motion.div
                     layoutId="activeGlow"
-                    className={cn("absolute inset-0 -z-10 rounded-xl opacity-30 blur-xl bg-gradient-to-r", item.color)}
+                    className={cn(
+                      "absolute inset-0 -z-10 rounded-lg opacity-20 blur-md bg-gradient-to-r",
+                      item.color
+                    )}
                   />
                 )}
 
-                <div className="flex flex-col items-center">
+                <div className="flex items-center space-x-2 relative z-10">
                   <div
                     className={cn(
-                      "p-3 rounded-xl bg-gradient-to-r mb-3",
+                      "p-1.5 md:p-2 rounded-md bg-gradient-to-r transition-all duration-300",
                       item.color,
-                      activeIndex === index ? "opacity-100" : "opacity-50 group-hover:opacity-70",
+                      activeIndex === index
+                        ? "opacity-100 shadow-md shadow-current/10"
+                        : "opacity-50 group-hover:opacity-70"
                     )}
                   >
                     {item.icon}
                   </div>
                   <span
                     className={cn(
-                      "text-base font-medium",
-                      activeIndex === index ? "text-white" : "text-gray-400 group-hover:text-gray-300",
+                      "text-sm md:text-base font-medium transition-all duration-300",
+                      activeIndex === index
+                        ? "text-white"
+                        : "text-gray-400 group-hover:text-gray-300"
                     )}
                   >
                     {item.title}
                   </span>
                 </div>
-
-
               </motion.button>
             ))}
           </div>
@@ -274,80 +281,64 @@ const Showcase: React.FC = () => {
 
         {/* Main Showcase Display */}
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Image Transformation Display */}
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="lg:col-span-7 aspect-[4/3] rounded-2xl overflow-hidden relative"
-            >
-              {/* Animated gradient border */}
-              <div className="absolute inset-0 p-[1px] rounded-2xl z-0">
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/20 to-transparent animate-border-flow" />
-              </div>
-
-              <div className="absolute inset-[1px] rounded-2xl overflow-hidden z-10">
-                <ImageTransformer item={activeItem} />
-              </div>
-            </motion.div>
-
-            {/* Information Panel */}
-            <motion.div
-              key={`info-${activeIndex}`}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="lg:col-span-5 space-y-6"
-            >
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <div className={cn("p-2 rounded-lg bg-gradient-to-r", activeItem.color)}>{activeItem.icon}</div>
-                  <h3
-                    className={cn(
-                      "text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r",
-                      activeItem.color,
-                    )}
-                  >
-                    {activeItem.title}
-                  </h3>
-                </div>
-
-                <p className="text-lg text-gray-300 leading-relaxed">{activeItem.description}</p>
-              </div>
-
-              <div className="space-y-4 mt-8">
-                <h4 className="text-lg font-medium text-white">Transformation Features</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left side - Image transformer */}
+            <div className="relative w-full h-full" style={{ aspectRatio: '1200/800' }}>
+              <ImageTransformer item={activeItem} />
+            </div>
+            
+            {/* Right side - Content */}
+            <div className="space-y-8">
+              {/* Description area */}
+              <div className="glass-panel p-8 rounded-2xl backdrop-blur-sm border border-white/10 space-y-4">
+                <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
+                  {activeItem.title}
+                </h3>
+                <p className="text-gray-400 leading-relaxed">{activeItem.description}</p>
+                
+                {/* Features list */}
+                <div className="pt-4 space-y-2">
                   {activeItem.features.map((feature, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: idx * 0.1 }}
-                      className="flex items-center gap-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10"
-                    >
-                      <div className={cn("p-2 rounded-full bg-gradient-to-r", activeItem.color)}>
-                        <Sparkles className="h-4 w-4" />
-                      </div>
-                      <p className="text-sm text-gray-300">{feature}</p>
-                    </motion.div>
+                    <div key={idx} className="flex items-center space-x-2 text-sm text-gray-300">
+                      <Sparkles className="h-4 w-4 text-primary" />
+                      <span>{feature}</span>
+                    </div>
                   ))}
                 </div>
               </div>
-
-              <div className="pt-6">
-                <a
-                  href="#editor"
-                  className="bg-neon-blue/10 backdrop-blur-md border border-neon-blue/30 text-white px-6 py-3 rounded-full hover:bg-neon-blue/20 transition-colors inline-flex items-center justify-center"
-                >
-                  Try it now
-                  <Wand2 className="ml-2 h-4 w-4" />
-                </a>
+              
+              {/* Tabs navigation */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {showcaseItems.map((item, index) => (
+                  <motion.button
+                    key={item.id}
+                    onClick={() => setActiveIndex(index)}
+                    className={cn(
+                      "relative px-4 py-3 rounded-xl transition-all duration-300 group overflow-hidden",
+                      activeIndex === index
+                        ? "glass-panel border border-white/20 shadow-lg"
+                        : "hover:glass-panel hover:border hover:border-white/10"
+                    )}
+                  >
+                    <div className="flex flex-col items-center gap-2 relative z-10">
+                      <div
+                        className={cn(
+                          "p-2 rounded-lg transition-all duration-300",
+                          activeIndex === index
+                            ? "bg-gradient-to-r from-primary/20 to-primary/10 shadow-lg"
+                            : "bg-white/5 group-hover:bg-white/10"
+                        )}
+                      >
+                        {item.icon}
+                      </div>
+                      <span className="text-sm font-medium text-center line-clamp-1">
+                        {item.title}
+                      </span>
+                    </div>
+                  </motion.button>
+                ))}
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
 
