@@ -25,7 +25,7 @@ export default {
     extend: {
       colors: {
         'neon-blue': '#00BFFF',
-        'neon-green': '#39FF14',
+        'neon-green': '#14ffe3',
         'dark': '#121212',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
