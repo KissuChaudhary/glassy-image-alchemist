@@ -31,7 +31,7 @@ const App = () => (
             <Route path="/ai-tools" element={<DashboardLayout><AITools /></DashboardLayout>} />
             <Route path="/create" element={<DashboardLayout><Create /></DashboardLayout>} />
             <Route path="/settings" element={<DashboardLayout><Settings /></DashboardLayout>} />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </SidebarProvider>
       </BrowserRouter>
