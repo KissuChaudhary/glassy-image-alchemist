@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="w-full py-8  overflow-hidden">
       
-      <div className="container mx-auto px-4 relative z-10 ">
+      <div className="container mx-auto px-4  z-10 ">
         {/* Animated elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full filter blur-3xl animate-float"></div>

@@ -31,8 +31,9 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({
   return (
     <div 
       className={cn(
-        "glass-panel p-6 rounded-xl neo-glow",
-        "transform transition-all duration-500 hover:-translate-y-1",
+        "relative overflow-hidden glass-panel p-8 rounded-2xl neo-glow",
+        "transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl",
+        "before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary/5 before:to-transparent before:opacity-0 before:transition-opacity hover:before:opacity-100",
         className
       )}
       style={{ 
@@ -41,13 +42,15 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({
         animation: `zoom-in 0.5s ease-out ${delay}ms forwards`
       }}
     >
-      <div className="flex items-center space-x-4 mb-4">
-        <div className="p-2 glass-panel rounded-lg text-primary">
-          {icon}
+      <div className="relative z-10">
+        <div className="flex items-center space-x-4 mb-6">
+          <div className="p-3 glass-panel rounded-xl text-primary transform transition-transform group-hover:scale-110 hover:rotate-6">
+            {icon}
+          </div>
+          <h3 className="text-xl font-semibold text-gradient">{title}</h3>
         </div>
-        <h3 className="text-xl font-semibold text-gradient">{title}</h3>
+        <p className="text-base text-muted-foreground leading-relaxed">{description}</p>
       </div>
-      <p className="text-sm text-muted-foreground">{description}</p>
     </div>
   );
 };
