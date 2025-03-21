@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDown, Wand2, Sparkles, ImageIcon, Download } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Squares } from "@/components/ui/squares-background"
 
 const HeroSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -71,9 +72,14 @@ const HeroSection: React.FC = () => {
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex flex-col justify-center pt-20 pb-10 overflow-hidden">
+      {/* Squares Background */}
+      <div className="absolute inset-0 z-0">
+        <Squares direction="diagonal" speed={0.5} borderColor="#333" squareSize={50} hoverFillColor="#222" className="opacity-30" />
+      </div>
+
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-radial from-dark-lighter/30 to-transparent opacity-40 pointer-events-none"></div>
-      
+       
       {/* Noise overlay */}
       <div className="noise-overlay"></div>
       
