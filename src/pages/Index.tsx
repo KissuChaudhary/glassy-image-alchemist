@@ -11,7 +11,8 @@ import Showcase from "@/components/Showcase";
 import UseCases from "@/components/UseCases";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import CursorEffect from '@/components/CursorEffect';
-
+import Stats from "@/components/Stats";
+import ComparisonSlider from "@/components/ComparisonSlider";
 
 const Index: React.FC = () => {
   return (
@@ -22,12 +23,13 @@ const Index: React.FC = () => {
       
       <main className="flex-1">
         <Hero />
+        <Stats />
         <Features />
         <Showcase />
+        <ComparisonSlider />
         <UseCases />
         <HowItWorks />
         <Testimonials />
-      
         <FAQ />
       </main>
       

@@ -30,7 +30,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   return (
     <div 
       className={cn(
-        "relative overflow-hidden glass-panel p-8 rounded-2xl neo-glow",
+        "relative overflow-hidden glass-card backdrop-blur-xl bg-white/5 border border-white/10 p-6 rounded-xl text-center p-8 rounded-2xl neo-glow",
         "transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl",
         "before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary/5 before:to-transparent before:opacity-0 before:transition-opacity hover:before:opacity-100",
         className
